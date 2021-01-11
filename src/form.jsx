@@ -33,7 +33,7 @@ class Form extends Component{
             }
         };
         console.log(data);
-        // alert("thanks for the registration");
+        alert("thanks for the registration");
       
         } else {
             this.validator.showMessages();
@@ -43,10 +43,8 @@ class Form extends Component{
         
     };
 
-
-
     handleinputdata=(e)=>{
-        // console.log(e.target.value);
+        console.log(e.target.value);
         this.setState({[e.target.name]:e.target.value})
     };
 
@@ -76,9 +74,9 @@ class Form extends Component{
                         <h2>Form Component</h2>
                         <br></br>
 
-                        <form onSubmit={this.handlesubmit} className="col md-12">
+                        <form onSubmit={this.handlesubmit} className="ui form">
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="enter first name"
+                                <input type="text" className="ui fluid input" placeholder="enter first name"
                                 name="firstname" value={this.state.firstname}
                                 onChange={this.handleinputdata}
                                 />
@@ -87,7 +85,7 @@ class Form extends Component{
                                     }
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="enter last name"
+                                <input type="text" className="ui fluid input" placeholder="enter last name"
                                 name="lastname" value={this.state.lastname}
                                 onChange={this.handleinputdata}
                                 />
@@ -96,27 +94,55 @@ class Form extends Component{
                                     }
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="enter Mobile no."
+                                <input type="text" className="ui fluid input" placeholder="enter Mobile no."
                                 name="mobileno" value={this.state.mobileno}
                                 onChange={this.handleinputdata}/> 
                                 {
-                                    this.validator.message('no',this.state.no,'required|phone')
+                                    this.validator.message('mobileno',this.state.mobileno,'required|min:2')
                                     }
                             </div>
-                            <div className="form-group"
-                            onChange={this.state.gender}>
-                                <label>
-                                    <input name="male "type="radio" value="Male" checked={true}
-                                    
-                                    />
-                                </label>
-                                <label>
-                                    <input  type="radio" value="Female" />
-                                </label>
-                                
-                            </div>
-                            <div className="form-group">
-                                <input type="text" className="form-control" placeholder="enter userid"
+                            <div className="equal width fields">
+                            <div className="field">
+                    <label>Gender</label>
+                    <div className="equal width fields">
+                    <div className="field">
+                        <div className="ui radio checkbox">
+                            <input type="radio" id="male" name="gender" value="male" onChange={this.handleinputdata} />
+                            <label>Male</label>
+                        </div>
+                    </div>
+                    <div className="field">
+                        <div className="ui radio checkbox">
+                            <input type="radio" id="female" name="gender" value="female" onChange={this.handleinputdata}/>
+                            <label>Female</label>
+                        </div>
+                    </div>
+                    </div>
+                    {
+                        this.validator.message('gender',this.state.gender,'required')
+                    }
+                </div>
+                <div className="field">
+                    <select name="country" onChange={this.handleinputdata}>
+                        
+                        <option value="INDIA" name="country">INDIA</option>
+                        <option value="USA" name="country">USA</option>
+                        <option value="UK" name="country">UK</option>
+                        <option value="FRANCE" name="country">FRANCE</option>
+                        <option value="GERMANY" name="country">GERMANY</option>
+                        <option value="ITALY" name="country">ITALY</option>
+                        <option value="RUSSIA" name="country">RUSSIA</option>
+                        <option value="AFRICA" name="country">AFRICA</option>
+                        <option value="Other" name="country">OTHER</option>
+                    </select>
+                    {
+                        this.validator.message('country',this.state.country,'required')
+                    }
+
+                </div>
+                </div>
+                <div className="form-group">
+                                <input type="text" className="ui fluid input" placeholder="enter userid"
                                 name="userid" value={this.state.UserLogin.userid}
                                 onChange={this.setuserid}/>
                                     {
@@ -125,7 +151,7 @@ class Form extends Component{
 
                             </div>
                             <div className="form-group">
-                                <input type="text" className="form-control" placeholder="enter email"
+                                <input type="text" className="ui fluid input" placeholder="enter email"
                                 name="email" value={this.state.UserLogin.email}
                                 onChange={this.setuseremail}/>
                                     {
@@ -134,6 +160,8 @@ class Form extends Component{
                             </div>
 
                             <button type="handlesubmit" className="btn btn-outline-primary">Submit</button>
+                
+                            
 
                         </form>
                     </div>
